@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Gate;
+
+use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
+
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -26,5 +31,17 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+
+        Gate::define("navBar", function (User $user){
+            // Aquí puede existir otro funcionamiento lógico.	
+        Return $user->rol === 'admin';
+        });
+
+        Gate::define("loggedIn", function (User $user){
+            // Aquí puede existir otro funcionamiento lógico.	
+            Return Auth::check();
+        });
     }
+
+
 }

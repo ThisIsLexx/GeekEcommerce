@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/index', [ProductController::class, 'index'])->name('products');
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
