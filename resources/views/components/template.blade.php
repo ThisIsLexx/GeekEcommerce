@@ -15,7 +15,7 @@
 <body>
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-                <a class="navbar-brand text-light" href="/menu">
+                <a class="navbar-brand text-light" href="/">
                 <!-- <img src="{{asset('/assets/img/logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt=""> -->
                     Geek n' Chill
                 </a>
@@ -40,6 +40,17 @@
                     @endcan
     
                     @can('loggedIn')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mi cuenta
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/address">Mis direcciones</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Mis metodos de pago</a>
+                        </div>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/misPedidos">Mi carrito</a>
                     </li>

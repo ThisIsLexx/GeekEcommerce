@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
+        Schema::create('products_users', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('tel');
-            $table->string('street_address');
-            $table->string('references');
-            $table->string('zip');
-            $table->string('state');
-            $table->string('city');
+            $table->foreignId('product_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('products_users');
     }
 };

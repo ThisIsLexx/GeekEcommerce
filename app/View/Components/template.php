@@ -17,7 +17,7 @@ class template extends Component
     {
         // Se inicializan las variables
         $this->titulo = $titulo;
-    
+    }
     /**
      * Get the view / contents that represent the component.
      *

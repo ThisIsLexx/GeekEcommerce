@@ -10,6 +10,12 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Shopping_cart;
+use App\Models\Address;
+use App\Models\Payment;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -58,4 +64,24 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function shopping_cart(){
+        return $this->hasOne(Shopping_cart::class);
+    }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+    public function products(){
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function addresses(){
+        return $this->hasMany(Address::class);
+    }
+
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
 }

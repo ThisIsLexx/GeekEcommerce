@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 class AddressController extends Controller
 {
     /**
@@ -15,6 +17,9 @@ class AddressController extends Controller
     public function index()
     {
         //
+        $addresses = Address::where('user_id', Auth::id())->get();
+
+        return view('address.address-index', compact('addresses'));
     }
 
     /**
@@ -25,6 +30,7 @@ class AddressController extends Controller
     public function create()
     {
         //
+        return view('address.address-create');
     }
 
     /**
@@ -36,6 +42,21 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|max:255|min:1',
+            'last_name' => 'required|max:255|min:3',
+            'tel' => 'required|numeric|digits:10',
+            'street_address' => 'required|min:5|max:255',
+            'references' => 'required|max:255|min:3',
+            'zip' => 'required|digits:5|numeric',
+            'state' => 'required|max:255|min:3',
+            'city' => 'required|max:255|min:3',
+        ]);
+
+        $request->merge(['user_id' => Auth::id()]);
+        Address::create($request->all());
+        
+        return redirect("/address")->with('success','Dirección agregada correctamente!');
     }
 
     /**
@@ -46,7 +67,9 @@ class AddressController extends Controller
      */
     public function show(Address $address)
     {
-        //
+        // ESTE METODO NO SERÁ IMPLEMENTADO
+        
+        return view('', compact('address'));
     }
 
     /**
@@ -58,6 +81,7 @@ class AddressController extends Controller
     public function edit(Address $address)
     {
         //
+        return view('address.address-edit', compact('address'));
     }
 
     /**
@@ -70,6 +94,29 @@ class AddressController extends Controller
     public function update(Request $request, Address $address)
     {
         //
+        $request->validate([
+            'name' => 'required|max:255|min:1',
+            'last_name' => 'required|max:255|min:3',
+            'tel' => 'required|numeric|digits:10',
+            'street_address' => 'required|min:5|max:255',
+            'references' => 'required|max:255|min:3',
+            'zip' => 'required|digits:5|numeric',
+            'state' => 'required|max:255|min:3',
+            'city' => 'required|max:255|min:3',
+        ]);
+
+        $address->name = $request->name;
+        $address->last_name = $request->last_name;
+        $address->tel = $request->tel;
+        $address->street_address = $request->street_address;
+        $address->references = $request->references;
+        $address->zip = $request->zip;
+        $address->state = $request->state;
+        $address->city = $request->city;
+
+        $address->save();
+
+        return redirect('/address')->with('success','Datos de la dirección editados correctamente!');
     }
 
     /**
@@ -81,5 +128,7 @@ class AddressController extends Controller
     public function destroy(Address $address)
     {
         //
+        $address->destroy($address->id);
+        return redirect('/address')->with('success','Dirección removida con exito!');
     }
 }

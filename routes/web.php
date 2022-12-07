@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AddressController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', [ProductController::class, 'index'])->name('products');
-
-
+Route::resource('address', AddressController::class)->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
@@ -30,3 +30,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
