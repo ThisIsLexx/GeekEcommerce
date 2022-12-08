@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('address', AddressController::class)->middleware('auth');
+
+Route::resource('payment', PaymentController::class)->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',

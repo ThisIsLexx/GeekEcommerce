@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id');
+            $table->string('name');
+            $table->string('card_number');
+            $table->string('expiration_date');
+            $table->string('cvv');
         });
     }
 

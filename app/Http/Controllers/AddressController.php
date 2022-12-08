@@ -129,6 +129,6 @@ class AddressController extends Controller
     {
         //
         $address->destroy($address->id);
-        return redirect('/address')->with('success','Dirección removida con exito!');
+        return redirect('/address')->with('success','Dirección eliminada correctamente!');
     }
 }

@@ -47,7 +47,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/address">Mis direcciones</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Mis metodos de pago</a>
+                            <a class="dropdown-item" href="/payment">Mis metodos de pago</a>
                         </div>
                     </li>
 
