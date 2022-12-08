@@ -52,7 +52,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/shopping_cart">Mi carrito</a>
+                        <a class="nav-link" href="/miCarrito">Mi carrito</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/order/create">Ver favoritos</a>

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProductController extends Controller
 {
@@ -182,5 +186,58 @@ class ProductController extends Controller
         return redirect('product')->with('success','Imagen eliminada correctamente!');
     }
     
+    public function carrito(){
+        
+        $usuario = Auth::user();
+        $productos = $usuario->products()->get();
 
+        $totalCarrito = 0;
+        foreach($productos as $producto){
+            $totalCarrito = $totalCarrito + $producto->prize;
+        }
+        $IVA = $totalCarrito*0.16;
+        $precioIva = $totalCarrito + $totalCarrito*0.16;
+
+        return view('shopping.shopping-index', compact('productos', 'totalCarrito', 'precioIva', 'IVA'));
+    }
+
+    public function agregarCarrito(Request $request){
+        
+        DB::table('product_user')->insert([
+            'product_id' => $request->product_id,
+            'user_id' => Auth::id(),
+            'updated_at' => now(),
+            'created_at' => now(),
+        ]);
+
+        return redirect('/miCarrito');
+    }
+
+    public function eliminarCarrito(Request $request){
+        DB::table('product_user')
+            ->where('product_id', $request->producto_id)
+            ->where('user_id', Auth::id())
+            ->limit(1)
+            ->delete();
+        return redirect('/miCarrito');
+    }
+
+    public function agregarFav(){
+        DB::table('favorites')->insert([
+            'product_id' => $request->product_id,
+            'user_id' => Auth::id(),
+            'updated_at' => now(),
+            'created_at' => now(),
+        ]);
+        return redirect('/favoritos');
+    }
+
+    public function eliminarFav(){
+        DB::table('favorites')
+            ->where('product_id', $request->producto_id)
+            ->where('user_id', Auth::id())
+            ->limit(1)
+            ->delete();
+        return redirect('/miCarrito');
+    }
 }
