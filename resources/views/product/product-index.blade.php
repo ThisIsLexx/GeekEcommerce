@@ -50,7 +50,6 @@
                             </td>
     
                         </tr>
-                        <img src="{{\Storage::url($product->img) }}" alt="">
                     @endforeach
                 @endif
             </tbody>

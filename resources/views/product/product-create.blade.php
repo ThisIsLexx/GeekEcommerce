@@ -8,7 +8,7 @@
             <form action="/product" method="POST" class="form-group">
                 @csrf
                 <label for="name">Nombre del producto</label>
-                <input type="text" name="name" id="name" class="form-control">
+                <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}">
                 @error('name')
                     <div class="alert alert-warning">
                         {{$message}}
@@ -19,9 +19,9 @@
                         <label for="category">Categoria</label>
                         <select name="category" id="category" class="form-control">
                             <option value="" selected disabled>Seleccione una</option>
-                            <option value="videojuego">videojuego</option>
-                            <option value="series/peliculas">series/peliculas</option>
-                            <option value="manga">manga</option>
+                            <option value="videojuego" {{old('category') == "videojuego" ? "selected" : ""}}>videojuego</option>
+                            <option value="series/peliculas" {{old('category') == "series/peliculas" ? "selected" : ""}}>series/peliculas</option>
+                            <option value="manga" {{old('category') == "manga" ? "selected" : ""}}>manga</option>
                         </select>
                         @error('category')
                             <div class="alert alert-warning">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="col">
                         <label for="prize">Precio</label>
-                        <input type="text" name="prize" id="prize" class="form-control">
+                        <input type="text" name="prize" id="prize" class="form-control" value="{{old('prize')}}">
                         @error('prize')
                             <div class="alert alert-warning">
                                 {{$message}}
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col">
                         <label for="stock">Stock</label>
-                        <input type="text" name="stock" id="stock" class="form-control">
+                        <input type="text" name="stock" id="stock" class="form-control" value="{{old('stock')}}">
                         @error('stock')
                             <div class="alert alert-warning">
                                 {{$message}}
@@ -50,7 +50,7 @@
                 </div>
                 <hr>
                 <label for="info">Descripción del producto</label>
-                <textarea name="info" id="info" class="form-control"></textarea>
+                <textarea name="info" id="info" class="form-control">{{old('info')}}</textarea>
                 @error('info')
                     <div class="alert alert-warning">
                         {{$message}}
