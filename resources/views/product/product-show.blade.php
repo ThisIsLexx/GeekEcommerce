@@ -43,14 +43,26 @@
                     <p class="card-text">{{$product->info}}</p>
                     <hr>
                     <div class="text-center">
-                        <a class="btn btn-primary" href="#">Agregar a favoritos</a>
-                        <a href="">
-                            <form action="/agregarCarrito" method="POST">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                <input class="btn btn-primary" type="submit" value="Agregar al carrito">
-                            </form>    
-                        </a>
+                        <div class="row">
+                            <div class="col">
+                                <a href="">
+                                    <form action="/agregarFav" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="producto_id" value="{{$product->id}}">
+                                        <input class="btn btn-primary" type="submit" value="Agregar a favoritos">
+                                    </form>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="">
+                                    <form action="/agregarCarrito" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                        <input class="btn btn-primary" type="submit" value="Agregar al carrito">
+                                    </form>    
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     </div>

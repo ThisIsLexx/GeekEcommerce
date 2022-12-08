@@ -222,22 +222,35 @@ class ProductController extends Controller
         return redirect('/miCarrito');
     }
 
-    public function agregarFav(){
+    public function favoritos(){
+        
+        // $usuario = Auth::user();
+        // $productosDB = DB::table('favorites')
+        //     ->where('user_id', $usuario->id)
+        //     ->get();
+
+        // dd($productosDB);
+
+        $productos = Product::where('id');
+
+
+        return view('shopping.shopping-favs', compact('productos'));
+    }
+
+    public function agregarFav(Request $request){
         DB::table('favorites')->insert([
-            'product_id' => $request->product_id,
+            'product_id' => $request->producto_id,
             'user_id' => Auth::id(),
-            'updated_at' => now(),
-            'created_at' => now(),
         ]);
         return redirect('/favoritos');
     }
 
-    public function eliminarFav(){
+    public function eliminarFav(Request $request){
         DB::table('favorites')
             ->where('product_id', $request->producto_id)
             ->where('user_id', Auth::id())
             ->limit(1)
             ->delete();
-        return redirect('/miCarrito');
+        return redirect('/favoritos');
     }
 }

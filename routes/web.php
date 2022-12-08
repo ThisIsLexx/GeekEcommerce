@@ -27,8 +27,13 @@ Route::resource('payment', PaymentController::class)->middleware('auth');
 Route::resource('product', ProductController::class)->middleware('auth');
 
 Route::get('/miCarrito', [ProductController::class, 'carrito']);
+Route::get('/favoritos', [ProductController::class, 'favoritos']);
+
 Route::post('/agregarCarrito', [ProductController::class, 'agregarCarrito']);
 Route::post('/eliminarCarrito', [ProductController::class, 'eliminarCarrito']);
+
+Route::post('/agregarFav', [ProductController::class, 'agregarFav']);
+Route::post('/eliminarFav', [ProductController::class, 'eliminarFav']);
 
 Route::post('/guardarArchivo/{platillo_id}', [ProductController::class, 'guardarArchivo'])->name('guardar');
 Route::post('/editarArchivo/{platillo_id}', [ProductController::class, 'editarArchivo'])->name('editar');
