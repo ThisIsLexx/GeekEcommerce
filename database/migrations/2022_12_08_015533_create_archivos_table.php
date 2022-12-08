@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('archivos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->float('prize');
-            $table->string('info');
-            $table->string('category');
-            $table->integer('stock')->unsigned();
-            $table->string('img')->nullable();
+            $table->foreignId('product_id');
+            $table->string('ubicacion');
+            $table->string('nombre_original');
+            $table->string('mime');
+            $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('archivos');
     }
 };

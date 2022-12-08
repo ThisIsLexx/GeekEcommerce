@@ -31,7 +31,7 @@
                         Gestión
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Productos</a>
+                        <a class="dropdown-item" href="/product">Gestionar productos</a>
                         <!-- <a class="dropdown-item" href="#">Platillos</a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Gestionar pedidos</a>

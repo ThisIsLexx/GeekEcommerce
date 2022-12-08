@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::get('/', function () {
 Route::resource('address', AddressController::class)->middleware('auth');
 
 Route::resource('payment', PaymentController::class)->middleware('auth');
+
+Route::resource('product', ProductController::class)->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
