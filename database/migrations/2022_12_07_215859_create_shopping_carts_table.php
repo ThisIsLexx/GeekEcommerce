@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id');
+            $table->float('total');
+            $table->integer('no_art')->unsigned();
         });
     }
 

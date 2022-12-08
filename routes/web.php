@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShoppingCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,9 @@ Route::get('/', function () {
 });
 
 Route::resource('address', AddressController::class)->middleware('auth');
-
 Route::resource('payment', PaymentController::class)->middleware('auth');
-
 Route::resource('product', ProductController::class)->middleware('auth');
+Route::resource('shopping_cart', ShoppingCartController::class);
 
 Route::post('/guardarArchivo/{platillo_id}', [ProductController::class, 'guardarArchivo'])->name('guardar');
 Route::post('/editarArchivo/{platillo_id}', [ProductController::class, 'editarArchivo'])->name('editar');

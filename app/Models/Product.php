@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
 use App\Models\Archivo;
+use App\Models\Product;
 
 
 class Product extends Model
@@ -30,5 +31,9 @@ class Product extends Model
 
     public function archivos(){
         return $this->hasMany(Archivo::class);
+    }
+
+    public function carritos(){
+        return $this->belongsToMany(Product::class);
     }
 }

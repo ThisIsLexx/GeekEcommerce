@@ -15,6 +15,7 @@ class ShoppingCartController extends Controller
     public function index()
     {
         //
+        return view('shopping.shopping-index');
     }
 
     /**
