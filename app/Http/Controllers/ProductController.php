@@ -210,7 +210,7 @@ class ProductController extends Controller
             'created_at' => now(),
         ]);
 
-        return redirect('/miCarrito');
+        return redirect()->back();
     }
 
     public function eliminarCarrito(Request $request){
@@ -242,7 +242,7 @@ class ProductController extends Controller
             'product_id' => $request->producto_id,
             'user_id' => Auth::id(),
         ]);
-        return redirect('/favoritos');
+        return redirect('/');
     }
 
     public function eliminarFav(Request $request){
@@ -252,5 +252,24 @@ class ProductController extends Controller
             ->limit(1)
             ->delete();
         return redirect('/favoritos');
+    }
+
+    public function indexPagina(){
+        $productos = Product::all();
+        $filter = "";
+
+        return view('product.index', compact('productos','filter'));
+    }
+
+    public function filter(Request $request){
+        $request->validate([
+            'filter' =>'required|not_in:0|in:videojuego,series/peliculas,manga',
+        ]);
+
+        $filter = $request->filter;
+        $productos = Product::where('category', $request->filter)->get();
+
+        return view('/product.index', compact('productos', 'filter'));
+
     }
 }

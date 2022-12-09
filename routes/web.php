@@ -18,13 +18,16 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::resource('address', AddressController::class)->middleware('auth');
 Route::resource('payment', PaymentController::class)->middleware('auth');
 Route::resource('product', ProductController::class)->middleware('auth');
+
+Route::get('/', [ProductController::class, 'indexPagina']);
+Route::post('/filtrarProducto', [ProductController::class, 'filter']);
 
 Route::get('/miCarrito', [ProductController::class, 'carrito']);
 Route::get('/favoritos', [ProductController::class, 'favoritos']);
