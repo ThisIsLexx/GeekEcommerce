@@ -29,14 +29,14 @@ Route::resource('product', ProductController::class)->middleware('auth');
 Route::get('/', [ProductController::class, 'indexPagina']);
 Route::post('/filtrarProducto', [ProductController::class, 'filter']);
 
-Route::get('/miCarrito', [ProductController::class, 'carrito']);
-Route::get('/favoritos', [ProductController::class, 'favoritos']);
+Route::get('/miCarrito', [ProductController::class, 'carrito'])->middleware('auth');
+Route::get('/favoritos', [ProductController::class, 'favoritos'])->middleware('auth');
 
-Route::post('/agregarCarrito', [ProductController::class, 'agregarCarrito']);
-Route::post('/eliminarCarrito', [ProductController::class, 'eliminarCarrito']);
+Route::post('/agregarCarrito', [ProductController::class, 'agregarCarrito'])->middleware('auth');
+Route::post('/eliminarCarrito', [ProductController::class, 'eliminarCarrito'])->middleware('auth');
 
-Route::post('/agregarFav', [ProductController::class, 'agregarFav']);
-Route::post('/eliminarFav', [ProductController::class, 'eliminarFav']);
+Route::post('/agregarFav', [ProductController::class, 'agregarFav'])->middleware('auth');
+Route::post('/eliminarFav', [ProductController::class, 'eliminarFav'])->middleware('auth');
 
 Route::post('/guardarArchivo/{platillo_id}', [ProductController::class, 'guardarArchivo'])->name('guardar');
 Route::post('/editarArchivo/{platillo_id}', [ProductController::class, 'editarArchivo'])->name('editar');

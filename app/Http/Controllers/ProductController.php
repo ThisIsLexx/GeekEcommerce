@@ -24,6 +24,9 @@ class ProductController extends Controller
     public function index()
     {
         //
+        if (! Gate::allows('gestionar-datos')){
+            abort(403, 'Que haces aqui??? No eres un administrador!');
+        }
         $products = Product::all();
 
         return view('product.product-index', compact('products'));
@@ -37,6 +40,9 @@ class ProductController extends Controller
     public function create()
     {
         //
+        if (! Gate::allows('gestionar-datos')){
+            abort(403, 'Que haces aqui??? No eres un administrador!');
+        }
         return view('product.product-create');
     }
 
@@ -72,6 +78,9 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        if (! Gate::allows('gestionar-datos')){
+            abort(403, 'Que haces aqui??? No eres un administrador!');
+        }
         return view('product.product-show', compact('product'));
     }
 
@@ -84,6 +93,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        if (! Gate::allows('gestionar-datos')){
+            abort(403, 'Que haces aqui??? No eres un administrador!');
+        }
         return view('product.product-edit', compact('product'));
     }
 
@@ -124,6 +136,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+        if (! Gate::allows('gestionar-datos')){
+            abort(403, 'Que haces aqui??? No eres un administrador!');
+        }
         $product->destroy($product->id);
         return redirect('/product')->with('success', 'Producto eliminado correctamente!');
     }
@@ -223,16 +238,13 @@ class ProductController extends Controller
     }
 
     public function favoritos(){
-        
-        // $usuario = Auth::user();
-        // $productosDB = DB::table('favorites')
-        //     ->where('user_id', $usuario->id)
-        //     ->get();
 
-        // dd($productosDB);
-
-        $productos = Product::where('id');
-
+        $productos = DB::table('favorites')
+            ->where('user_id', Auth::id())
+            ->join('products', 'favorites.product_id', '=', 'products.id')
+            ->select('products.id','products.name','products.prize','products.info','products.category','products.stock','products.img')
+            ->distinct()
+            ->get();
 
         return view('shopping.shopping-favs', compact('productos'));
     }

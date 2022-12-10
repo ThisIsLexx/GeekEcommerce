@@ -53,6 +53,7 @@
                                 <p class="card-text">{{$producto->category}}</p>
                                 <p class="card-text mr-4 text-success">${{$producto->prize}}.00</p>
                             </div>
+                            <hr>
                             <div class="d-flex justify-content-between">
                                 <a href="">
                                     <form action="/agregarCarrito" method="POST">

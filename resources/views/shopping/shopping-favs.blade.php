@@ -11,53 +11,33 @@
                 <p class="text-muted">Asegurate de volver con algo de valor!</p>
                 
             @else
-                <div class="row">
-                    <div class="col-8">
-                        NOMBRE DEL PRODUCTO:
-                    </div>
-                    <div class="col-2">
-                        ACCIONES:
-                    </div>
-                    <div class="col-2">
-                        PRECIO:
-                    </div>
-                </div>
-
-                @foreach($productos as $producto)
-                    <br>    
-                    <div class="row">
-                        <div class="col-8 text-muted">
-                            
+                <div class="row g-3">
+                    @foreach($productos as $producto)
+                        <div class="col-12 col-md-6 col-lg-4" style="margin-bottom:20px">
+                            <div class="card">
+                                <img class="img-card-top" src="{{\Storage::url($producto->img) }}" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$producto->name}}</h5>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="card-text">{{$producto->category}}</p>
+                                        <p class="card-text mr-4 text-success">${{$producto->prize}}.00</p>
+                                    </div>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a href="">
+                                            <form action="/eliminarCarrito" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="producto_id" value="{{$producto->id}}">
+                                                <input type="submit" class="btn btn-danger" value="Quitar de favoritos">
+                                            </form>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <a href="">
-                                <form action="/eliminarFav" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="producto_id" value="{{$producto->id}}">
-                                    <input type="submit" class="btn btn-danger" value="Quitar">
-                                </form>
-                            </a>
-                        </div>
-                        <div class="col-2 text-muted">
-                            $.00
-                        </div>
-                    </div>
-                @endforeach
-                <hr>
-                <div class="row">
-                    <div class="col-10 text-muted">Precio sin IVA:</div>
-                    <div class="col-2 text-muted">$.00</div>
-                </div>
-                <div class="row">
-                    <div class="col-9"></div>
-                    <div class="col-1 text-center">IVA:</div>
-                    <div class="col-2 text-muted">$.00</div>
+                    @endforeach
                 </div>
                 <hr>
-                <div class="row">
-                    <div class="col-10">Precio con IVA:</div>
-                    <div class="col-2 text-muted">$.00</div>
-                </div>
             @endif
 
         </div>

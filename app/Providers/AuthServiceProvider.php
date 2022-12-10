@@ -39,11 +39,14 @@ class AuthServiceProvider extends ServiceProvider
         Return $user->rol === 'admin';
         });
 
+        Gate::define("gestionar-datos", function (User $user){
+            // Aquí puede existir otro funcionamiento lógico.	
+        Return $user->rol === 'admin';
+        });
+
         Gate::define("loggedIn", function (User $user){
             // Aquí puede existir otro funcionamiento lógico.	
             Return Auth::check();
         });
     }
-
-
 }

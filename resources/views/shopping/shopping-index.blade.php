@@ -7,7 +7,7 @@
             <hr>
             @if(sizeof($productos) < 1)
                 <h5>Aun no has agregado productos a tu carrito! Regresa a navegar:</h5>
-                <h5>--><a href="#">Volver al catalogo</a> :)</h5>
+                <h5>--><a href="/">Volver al catalogo</a> :)</h5>
                 <p class="text-muted">Asegurate de volver con algo de valor!</p>
                 
             @else
@@ -45,7 +45,7 @@
                 @endforeach
                 <hr>
                 <div class="row">
-                    <div class="col-10 text-muted">Precio sin IVA:</div>
+                    <div class="col-10 text-muted">Total sin IVA aplicado:</div>
                     <div class="col-2 text-muted">${{$totalCarrito}}.00</div>
                 </div>
                 <div class="row">
@@ -55,7 +55,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-10">Precio con IVA:</div>
+                    <div class="col-10">Total con IVA aplicado:</div>
                     <div class="col-2 text-muted">${{$precioIva}}.00</div>
                 </div>
             @endif
