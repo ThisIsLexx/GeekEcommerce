@@ -37,6 +37,12 @@
         @foreach($productos as $producto)
                 <div class="col-12 col-md-6 col-lg-4" style="margin-bottom:20px">
                     <div class="card">
+                        @if($producto->img == null)
+                            <img class="img-card-top" src="{{asset('img/example.jpg')}}" alt="">
+                        @else
+
+                        @endif
+
                         <img class="img-card-top" src="{{\Storage::url($producto->img) }}" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{$producto->name}}</h5>
