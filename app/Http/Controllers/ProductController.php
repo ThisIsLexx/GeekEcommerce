@@ -272,7 +272,7 @@ class ProductController extends Controller
 
         return view('product.index', compact('productos','filter'));
     }
-
+    
     public function filter(Request $request){
         $request->validate([
             'filter' =>'required|not_in:0|in:videojuego,series/peliculas,manga',
@@ -282,6 +282,5 @@ class ProductController extends Controller
         $productos = Product::where('category', $request->filter)->get();
 
         return view('/product.index', compact('productos', 'filter'));
-
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -25,6 +26,7 @@ use App\Http\Controllers\ProductController;
 Route::resource('address', AddressController::class)->middleware('auth');
 Route::resource('payment', PaymentController::class)->middleware('auth');
 Route::resource('product', ProductController::class)->middleware('auth');
+Route::resource('order', OrderController::class)->middleware('auth');
 
 Route::get('/', [ProductController::class, 'indexPagina']);
 Route::post('/filtrarProducto', [ProductController::class, 'filter']);

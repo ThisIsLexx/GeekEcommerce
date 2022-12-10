@@ -7,7 +7,7 @@
             <hr>
             @if(sizeof($productos) < 1)
                 <h5>Aun no has agregado producto a tus favoritos! Regresa a navegar:</h5>
-                <h5>--><a href="#">Volver al catalogo</a> :)</h5>
+                <h5>--><a href="/">Volver al catalogo</a> :)</h5>
                 <p class="text-muted">Asegurate de volver con algo de valor!</p>
                 
             @else
@@ -22,10 +22,11 @@
                                         <p class="card-text">{{$producto->category}}</p>
                                         <p class="card-text mr-4 text-success">${{$producto->prize}}.00</p>
                                     </div>
+                                    <p class="card-text">{{$producto->info}}</p>
                                     <hr>
                                     <div class="text-center">
                                         <a href="">
-                                            <form action="/eliminarCarrito" method="POST">
+                                            <form action="/eliminarFav" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="producto_id" value="{{$producto->id}}">
                                                 <input type="submit" class="btn btn-danger" value="Quitar de favoritos">

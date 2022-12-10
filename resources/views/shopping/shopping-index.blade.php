@@ -27,6 +27,7 @@
                     <br>    
                     <div class="row">
                         <div class="col-8 text-muted">
+                            <img src="{{\Storage::url($producto->img) }}" width="30" height="auto" alt="">
                             {{$producto->name}}
                         </div>
                         <div class="col-2">
